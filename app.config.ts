@@ -11,7 +11,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     scheme: 'PingCHAtR',
     ios: {
       supportsTablet: true,
-      bundleIdentifier: 'com.PingCHAtR.app',
+      bundleIdentifier: 'com.pingchatr.app',
       infoPlist: {
         NSCameraUsageDescription:
           'This app requires access to the camera to upload images and videos.',
@@ -30,7 +30,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     },
     android: {
       adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#ffffff' },
-      package: 'com.PingCHAtR.app',
+      package: 'com.pingchatr.app',
       permissions: [
         'android.permission.CAMERA',
         'android.permission.RECORD_AUDIO',
