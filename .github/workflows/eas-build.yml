@@ -19,6 +19,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      EXPO_PUBLIC_ANDROID_GOOGLE_SERVICES_FILE: ./google-services.json
+      EXPO_PUBLIC_IOS_GOOGLE_SERVICES_FILE: ./GoogleService-Info.plist
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,6 +39,13 @@ jobs:
 
       - name: Install deps
         run: pnpm install --frozen-lockfile
+
+      - name: Restore Firebase config files
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES_JSON_B64 }}" | base64 -d > google-services.json
+          if [ -n "${{ secrets.GOOGLE_SERVICES_PLIST_B64 }}" ]; then
+            echo "${{ secrets.GOOGLE_SERVICES_PLIST_B64 }}" | base64 -d > GoogleService-Info.plist
+          fi
 
       - name: Setup EAS CLI
         uses: expo/expo-github-action@v8
